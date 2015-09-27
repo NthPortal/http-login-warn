@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "update_url": "http://clients2.google.com/service/update2/crx",
+
+  "name": "HTTP Login Warn",
+  "description": "Warns about password fields on HTTP pages",
+  "version": "1.0.0",
+
+  "options_page": "src/options.html",
+
+  "permissions": [
+    "<all_urls>",
+    "activeTab"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*"
+      ],
+      "js": [
+        "src/warn.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}
