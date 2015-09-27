@@ -1,8 +1,14 @@
 var warned = false;
 
+var referrer = "null";
+if (document.referrer != "") {
+    referrer = document.referrer.toString();
+}
+
 function check() {
-    console.log("test");
-    if (!warned && document.querySelectorAll("input[type=password]").length > 0) {
+    if (!warned
+        && ((referrer === "null" && location.protocol != 'https:') || referrer.indexOf("http://") === 0)
+        && document.querySelectorAll("input[type=password]").length > 0) {
         // TODO replace with something else
         alert("WARNING: Password field on insecure (HTTP) page!");
         warned = true;
